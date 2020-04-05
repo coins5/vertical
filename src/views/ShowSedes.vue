@@ -1,66 +1,23 @@
 <template>
-  <v-container>
+  <v-container style="padding-bottom: 72px">
+    <v-row>
+      <v-col>
+        <div>
+          <v-btn icon @click="goBack">
+            <v-icon>mdi-arrow-left</v-icon>
+          </v-btn>
+          Sedes
+        </div>
+      </v-col>
+    </v-row>
     <v-row>
       <v-col>
         <v-data-table :headers="headers" :items="data">
-          <template v-slot:top>
-            <v-toolbar flat>
-              <v-toolbar-title>Sede</v-toolbar-title>
-              <v-divider
-                class="mx-4"
-                inset
-                vertical
-              ></v-divider>
-              <v-spacer></v-spacer>
-              <v-dialog v-model="dialog" max-width="500px">
-                <template v-slot:activator="{ on }">
-                  <v-btn color="primary" dark class="mb-2" v-on="on">New Item</v-btn>
-                </template>
-                <v-card>
-                  <v-card-title>
-                    <span class="headline">{{ formTitle }}</span>
-                  </v-card-title>
-
-                  <v-card-text>
-                    <v-container>
-                      <v-row>
-                        <v-col cols="12" sm="6">
-                          <v-text-field v-model="editedItem.nombre" label="Nombre"></v-text-field>
-                        </v-col>
-                        <v-col cols="12" sm="6">
-                          <v-autocomplete
-                            v-model="editedItem.distrito"
-                            placeholder="Distrito"
-                            label="Distrito"
-                            :items="districts"
-                            solo
-                          />
-                        </v-col>
-                      </v-row>
-                    </v-container>
-                  </v-card-text>
-
-                  <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <v-btn color="blue darken-1" text @click="close">Cancel</v-btn>
-                    <v-btn color="blue darken-1" text @click="save">Save</v-btn>
-                  </v-card-actions>
-                </v-card>
-              </v-dialog>
-            </v-toolbar>
-          </template>
           <template v-slot:item.actions="{ item }">
-            <v-icon
-              small
-              class="mr-2"
-              @click="editItem(item)"
-            >
+            <v-icon @click="editItem(item)" class="mr-2" small >
               mdi-pencil
             </v-icon>
-            <v-icon
-              small
-              @click="deleteItem(item)"
-            >
+            <v-icon @click="deleteItem(item)" small>
               mdi-delete
             </v-icon>
           </template>
@@ -70,6 +27,50 @@
         </v-data-table>
       </v-col>
     </v-row>
+    <v-fab-transition>
+      <v-btn
+        color="primary"
+        @click="newItem"
+        fixed
+        bottom
+        right
+        fab
+      >
+        <v-icon>mdi-plus</v-icon>
+      </v-btn>
+    </v-fab-transition>
+    <v-dialog v-model="dialog" max-width="500px">
+      <v-card>
+        <v-card-title>
+          <span class="headline">{{ formTitle }}</span>
+        </v-card-title>
+
+        <v-card-text>
+          <v-container>
+            <v-row>
+              <v-col cols="12" sm="6">
+                <v-text-field v-model="editedItem.nombre" label="Nombre"></v-text-field>
+              </v-col>
+              <v-col cols="12" sm="6">
+                <v-autocomplete
+                  v-model="editedItem.distrito"
+                  placeholder="Distrito"
+                  label="Distrito"
+                  :items="districts"
+                  solo
+                />
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-card-text>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="blue darken-1" text @click="close">Cancel</v-btn>
+          <v-btn color="blue darken-1" text @click="save">Save</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
 
@@ -130,21 +131,24 @@ export default {
   },
 
   methods: {
+    goBack () {
+      this.$router.push('/admin')
+    },
+    newItem () {
+      this.dialog = true
+    },
     initialize () {
       this.data = sedeStore.getSedes()
     },
-
     editItem (item) {
       this.editedIndex = this.data.indexOf(item)
       this.editedItem = Object.assign({}, item)
       this.dialog = true
     },
-
     deleteItem (item) {
       const index = this.data.indexOf(item)
       confirm('Are you sure you want to delete this item?') && this.data.splice(index, 1)
     },
-
     close () {
       this.dialog = false
       setTimeout(() => {
@@ -152,7 +156,6 @@ export default {
         this.editedIndex = -1
       }, 300)
     },
-
     save () {
       if (this.editedIndex > -1) {
         Object.assign(this.data[this.editedIndex], this.editedItem)
