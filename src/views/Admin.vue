@@ -25,7 +25,7 @@
         </v-card>
       </v-col>
       <v-col cols="12" sm="6">
-        <v-card>
+        <v-card @click="showSedes">
           <v-card-text class="text-center">
             <v-icon x-large>mdi-home-city-outline</v-icon>
             <br />
@@ -54,6 +54,9 @@ export default {
     },
     showInstructores () {
       this.$router.push('/showInstructores')
+    },
+    showSedes () {
+      this.$router.push('/showSedes')
     }
   }
 }

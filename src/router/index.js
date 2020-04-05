@@ -10,6 +10,7 @@ import ShowAlumnos from '../views/ShowAlumnos.vue'
 import ShowAlumno from '../views/ShowAlumno.vue'
 import ShowInstructores from '../views/ShowInstructores.vue'
 import ShowInstructor from '../views/ShowInstructor.vue'
+import ShowSedes from '../views/ShowSedes.vue'
 
 Vue.use(VueRouter)
 
@@ -59,6 +60,11 @@ const routes = [
     path: '/showAlumno/:id?',
     name: 'ShowAlumno',
     component: ShowAlumno
+  },
+  {
+    path: '/showSedes',
+    name: 'ShowSedes',
+    component: ShowSedes
   }
 ]
 
