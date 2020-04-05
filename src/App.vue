@@ -47,9 +47,6 @@ export default {
   data: () => ({
     drawer: false
   }),
-  mounted () {
-    console.log(this.$route)
-  },
   methods: {
     logout () {
       this.$router.push('/login')
