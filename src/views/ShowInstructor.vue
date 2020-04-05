@@ -6,7 +6,7 @@
           <v-btn icon @click="goBack">
             <v-icon>mdi-arrow-left</v-icon>
           </v-btn>
-          {{isNewItem ? 'Nuevo alumno' : 'Editar alumno'}}
+          {{isNewItem ? 'Nuevo instructor' : 'Editar instructor'}}
         </div>
       </v-col>
     </v-row>
@@ -157,7 +157,7 @@
 </template>
 
 <script>
-import alumnoStore from '../stores/alumnoStore'
+import instructorStore from '../stores/InstructorStore'
 import moment from 'moment'
 const LimaMetropolitana = [
   'Callao',
@@ -215,7 +215,7 @@ export default {
   mounted () {
     const id = this.$route.params.id
     if (id) {
-      this.data = alumnoStore.getAlumno(id)
+      this.data = instructorStore.getInstructor(id)
       this.selectedDistrict = 'Barranco'
       this.selectedTipoDocumento = 'DNI'
     }
@@ -227,13 +227,13 @@ export default {
   },
   methods: {
     cancel () {
-      this.$router.push('/showAlumnos')
+      this.$router.push('/showInstructores')
     },
     save () {
-      this.$router.push('/showAlumnos')
+      this.$router.push('/showInstructores')
     },
     goBack () {
-      this.$router.push('/showAlumnos')
+      this.$router.push('/showInstructores')
     }
   },
   data () {

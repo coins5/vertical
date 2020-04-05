@@ -8,6 +8,8 @@ import Instructor from '../views/Instructor.vue'
 import Cliente from '../views/Cliente.vue'
 import ShowAlumnos from '../views/ShowAlumnos.vue'
 import ShowAlumno from '../views/ShowAlumno.vue'
+import ShowInstructores from '../views/ShowInstructores.vue'
+import ShowInstructor from '../views/ShowInstructor.vue'
 
 Vue.use(VueRouter)
 
@@ -32,6 +34,16 @@ const routes = [
     path: '/instructor',
     name: 'Instructor',
     component: Instructor
+  },
+  {
+    path: '/showInstructores',
+    name: 'ShowInstructores',
+    component: ShowInstructores
+  },
+  {
+    path: '/showInstructor/:id?',
+    name: 'ShowInstructor',
+    component: ShowInstructor
   },
   {
     path: '/cliente',

@@ -16,7 +16,7 @@
         </v-card>
       </v-col>
       <v-col cols="12" sm="6">
-        <v-card>
+        <v-card @click="showInstructores">
           <v-card-text class="text-center">
             <v-icon x-large>mdi-account-group</v-icon>
             <br />
@@ -51,6 +51,9 @@ export default {
   methods: {
     showAlumnos () {
       this.$router.push('/showAlumnos')
+    },
+    showInstructores () {
+      this.$router.push('/showInstructores')
     }
   }
 }

@@ -1,12 +1,12 @@
 <template>
-  <v-container style="padding-bottom: 72px">
+  <v-container>
     <v-row>
       <v-col>
         <div>
           <v-btn icon @click="goBack">
             <v-icon>mdi-arrow-left</v-icon>
           </v-btn>
-          Alumnos
+          Instructores
         </div>
       </v-col>
     </v-row>
@@ -14,7 +14,7 @@
       <v-col>
         <v-card>
           <v-card-title>
-            Alumnos
+            Instructores
             <v-spacer></v-spacer>
             <v-text-field
               v-model="search"
@@ -63,19 +63,17 @@
 </template>
 
 <script>
-// TODO: Falta exportar a Excel
-
-import alumnoStore from '../stores/alumnoStore'
+import instructorStore from '../stores/InstructorStore'
 export default {
   mounted () {
-    this.data = alumnoStore.getAlumnos()
+    this.data = instructorStore.getInstructores()
   },
   methods: {
     editItem (alumno) {
-      this.$router.push(`/showAlumno/${alumno.id}`)
+      this.$router.push(`/showInstructor/${alumno.id}`)
     },
     newItem () {
-      this.$router.push('/showAlumno')
+      this.$router.push('/showInstructor')
     },
     goBack () {
       this.$router.push('/admin')
