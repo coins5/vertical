@@ -7,7 +7,7 @@
     </v-row>
     <v-row>
       <v-col cols="12" sm="6">
-        <v-card>
+        <v-card @click="showAlumnos">
           <v-card-text class="text-center">
             <v-icon x-large>mdi-account-group</v-icon>
             <br />
@@ -48,6 +48,10 @@
 
 <script>
 export default {
-
+  methods: {
+    showAlumnos () {
+      this.$router.push('/showAlumnos')
+    }
+  }
 }
 </script>

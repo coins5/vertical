@@ -23,8 +23,11 @@
 
     <v-app-bar app dense flat v-show="$route.name !== 'Login'">
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-toolbar-title>Hola</v-toolbar-title>
+      <v-toolbar-title>Vertical</v-toolbar-title>
       <v-spacer></v-spacer>
+      <v-btn icon @click="changeTheme()">
+        <v-icon>mdi-brightness-6</v-icon>
+      </v-btn>
       <v-btn icon @click="logout()">
         <v-icon>mdi-exit-to-app</v-icon>
       </v-btn>
@@ -50,6 +53,9 @@ export default {
   methods: {
     logout () {
       this.$router.push('/login')
+    },
+    changeTheme () {
+      this.$vuetify.theme.dark = !this.$vuetify.theme.dark
     }
   }
 }
