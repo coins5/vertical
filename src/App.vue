@@ -2,6 +2,24 @@
   <v-app>
     <v-navigation-drawer v-model="drawer" app stateless>
       <v-container>
+        <v-row>
+          <v-col>
+            <v-btn text @click="logout"> <v-icon left>mdi-exit-to-app</v-icon> Salir</v-btn>
+          </v-col>
+          <v-spacer></v-spacer>
+          <v-col>
+            <v-badge
+              bordered
+              color="accent"
+              content="6"
+              overlap
+            >
+              <v-btn icon>
+                <v-icon>mdi-bell-outline</v-icon>
+              </v-btn>
+            </v-badge>
+          </v-col>
+        </v-row>
         <v-row class="text-center">
           <v-col>
             <v-avatar size="125">
@@ -95,13 +113,6 @@
           <br />
           <br />
         </v-row>
-
-        <v-row>
-          <v-col>
-            <v-btn block color="secondary"> <v-icon left>mdi-exit-to-app</v-icon> Salir</v-btn>
-          </v-col>
-        </v-row>
-
       </v-container>
     </v-navigation-drawer>
 
@@ -111,9 +122,6 @@
       <v-spacer></v-spacer>
       <v-btn icon @click="changeTheme()">
         <v-icon>mdi-brightness-6</v-icon>
-      </v-btn>
-      <v-btn icon @click="logout()">
-        <v-icon>mdi-exit-to-app</v-icon>
       </v-btn>
     </v-app-bar>
 
@@ -130,6 +138,7 @@ export default {
       .then(response => response.json())
       .then(body => {
         this.user = body.results[0]
+        this.drawer = true
       })
   },
   computed: {
@@ -198,6 +207,7 @@ export default {
   }),
   methods: {
     logout () {
+      this.drawer = false
       this.$router.push('/login')
     },
     changeTheme () {
