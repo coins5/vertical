@@ -118,7 +118,7 @@
                 </v-col>
                 <v-col cols="12" sm="6">
                   <v-select
-                    :items="['Femenino', 'Masculino', 'Si por favor']"
+                    :items="['Femenino', 'Masculino']"
                     label="Sexo"
                     v-model="selectedSexo"
                     solo
